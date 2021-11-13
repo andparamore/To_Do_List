@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:To_Do_List"
+             x:Class="To_Do_List.MainPage">
+    <ScrollView BackgroundColor="#0000">
+        <StackLayout Spacing="0">
+            <Frame BackgroundColor="#0000">
+                <Label Text="Привет, это твой To Do List!" HorizontalTextAlignment="Center" FontSize="26" TextColor="#000000" FontFamily = "TimesNewRomans"/>
+            </Frame>
+            <StackLayout x:Name="stackLayout" Margin="10" BackgroundColor="#0000">
+                <Frame BackgroundColor="#0000" BorderColor="#00FFFF" CornerRadius = "45" HasShadow = "true">
+                    <Entry x:Name="do_entry" Placeholder="У нас новое дело?" MaxLength="20" ClearButtonVisibility="WhileEditing" FontFamily = "TimesNewRomans"/>
+                </Frame>
+                <StackLayout Orientation="Horizontal" HorizontalOptions="Center" >
+                    <Button x:Name="button_add" Text="Добавить" Clicked="AddItem" FontSize="24" TextColor="#000000" FontAttributes="Bold"
+                        BackgroundColor="#0000" FontFamily = "TimesNewRomans"/>
+                    <Button  x:Name="button_remove" Clicked="RemoveItem" Text="Удалить" FontSize="24" TextColor="#000000" FontAttributes="Bold"
+                        BackgroundColor="#0000" FontFamily = "TimesNewRomans"/>
+                </StackLayout>
+                <ListView x:Name="toDoList"
+                 HasUnevenRows="True"
+                 ItemsSource="{Binding ToDos}"
+                 ItemTapped="OnItemTapped"
+                 SeparatorColor="#00FFFF">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <ViewCell.View>
+                                    <StackLayout>
+                                        <Frame BackgroundColor="#0000" BorderColor="#000000" CornerRadius = "0" HasShadow = "true" Margin="5">
+                                            <Label Text="{Binding Title}" HorizontalTextAlignment="Center" FontSize="26" TextColor="#000000" FontFamily = "TimesNewRomans"/>
+                                        </Frame>
+                                    </StackLayout>
+                                </ViewCell.View>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>
