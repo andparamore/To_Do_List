@@ -13,6 +13,7 @@ namespace To_Do_List
     public partial class MainPage : ContentPage
     {
         public ObservableCollection <ToDo> ToDos { get; set; }
+
         public MainPage()
         {
             InitializeComponent();
@@ -24,12 +25,24 @@ namespace To_Do_List
         {
             if (do_entry.Text != "")
             {
-                ToDos.Add(new ToDo { Title = do_entry.Text});
+                ToDos.Add(new ToDo { Title = do_entry.Text, Date_Create = datePicker.Date.ToString("dd/MM/yyyy") });
                 do_entry.Text = "";
             }
         }
 
-        private void RemoveItem(object sender, EventArgs e)
+        public async void OnItemTapped(object sender, ItemTappedEventArgs e)
+        {
+            bool result;
+            ToDo selected = e.Item as ToDo;
+            if (selected != null)
+            {
+                result = await DisplayAlert($"{selected.Title}", "Задача назначена на " + $"{selected.Date_Create}", "Удалить", "OK");
+                if (result == true)
+                    Remove();
+            }
+        }
+
+        public void Remove()
         {
             ToDo toDo = toDoList.SelectedItem as ToDo;
             if (toDo != null)
@@ -37,13 +50,6 @@ namespace To_Do_List
                 ToDos.Remove(toDo);
                 toDoList.SelectedItem = null;
             }
-        }
-
-        public async void OnItemTapped(object sender, ItemTappedEventArgs e)
-        {
-            ToDo selected = e.Item as ToDo;
-            if (selected != null)
-                await DisplayAlert("Просмотр задачи", $"{selected.Title}", "OK");
         }
     }
     

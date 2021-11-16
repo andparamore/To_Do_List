@@ -7,5 +7,6 @@ namespace To_Do_List
     public class ToDo
     {
         public string Title { get; set; }
+        public string Date_Create { get; set; }
     }
 }

@@ -6,30 +6,31 @@
     <ScrollView BackgroundColor="#0000">
         <StackLayout Spacing="0">
             <Frame BackgroundColor="#0000">
-                <Label Text="Привет, это твой To Do List!" HorizontalTextAlignment="Center" FontSize="26" TextColor="#000000" FontFamily = "TimesNewRomans"/>
+                <Label Text="Привет, это твой To Do List!"/>
             </Frame>
-            <StackLayout x:Name="stackLayout" Margin="10" BackgroundColor="#0000">
-                <Frame BackgroundColor="#0000" BorderColor="#00FFFF" CornerRadius = "45" HasShadow = "true">
-                    <Entry x:Name="do_entry" Placeholder="У нас новое дело?" MaxLength="20" ClearButtonVisibility="WhileEditing" FontFamily = "TimesNewRomans"/>
-                </Frame>
-                <StackLayout Orientation="Horizontal" HorizontalOptions="Center" >
-                    <Button x:Name="button_add" Text="Добавить" Clicked="AddItem" FontSize="24" TextColor="#000000" FontAttributes="Bold"
-                        BackgroundColor="#0000" FontFamily = "TimesNewRomans"/>
-                    <Button  x:Name="button_remove" Clicked="RemoveItem" Text="Удалить" FontSize="24" TextColor="#000000" FontAttributes="Bold"
-                        BackgroundColor="#0000" FontFamily = "TimesNewRomans"/>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                <DatePicker x:Name="datePicker" Format="D"/>
+            </StackLayout>
+            <StackLayout x:Name="stackLayout" Margin="10" BackgroundColor="#0000" >
+                <StackLayout Orientation="Horizontal" HorizontalOptions="Fill" Spacing="0">
+                    <Frame BackgroundColor="#0000" BorderColor="#00FFFF" CornerRadius = "45" HasShadow = "true" WidthRequest="420">
+                        <Entry x:Name="do_entry" Placeholder="У нас новое дело?" MaxLength="20" ClearButtonVisibility="WhileEditing" FontFamily = "TimesNewRomans"/>
+                    </Frame>
+                    <Frame>
+                        <ImageButton Source="check.png" x:Name="button_add" Clicked="AddItem" Aspect="AspectFill"/>
+                    </Frame>
                 </StackLayout>
                 <ListView x:Name="toDoList"
                  HasUnevenRows="True"
                  ItemsSource="{Binding ToDos}"
-                 ItemTapped="OnItemTapped"
-                 SeparatorColor="#00FFFF">
+                 ItemTapped="OnItemTapped">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
                                 <ViewCell.View>
                                     <StackLayout>
                                         <Frame BackgroundColor="#0000" BorderColor="#000000" CornerRadius = "0" HasShadow = "true" Margin="5">
-                                            <Label Text="{Binding Title}" HorizontalTextAlignment="Center" FontSize="26" TextColor="#000000" FontFamily = "TimesNewRomans"/>
+                                            <Label Text="{Binding Title}"/>
                                         </Frame>
                                     </StackLayout>
                                 </ViewCell.View>
